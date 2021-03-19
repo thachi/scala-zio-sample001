@@ -11,10 +11,10 @@ class DebugRepositoryInterpreterTest extends AnyFunSuite {
 
   test("ざっくり試してみる") {
 
-    val env = new DebugEnv
+    val env = new DebugRepositoryInterpreter
 
     val p = Service.createBlog("たいとる", "コンテンツ", "https://image.example.com/path/to/image.png")
-    val runtime = Runtime.apply(env, Platform.default)
+    val runtime = Runtime.apply(env.env, Platform.default)
     runtime.unsafeRun(p)
 
 

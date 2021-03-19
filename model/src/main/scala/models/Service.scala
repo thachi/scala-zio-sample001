@@ -5,9 +5,8 @@ import zio.ZIO
 
 object Service {
 
-  trait Env extends BlogRepository with ImageRepository
-
-  def createBlog(title: String, content: String, imageurl: String): ZIO[Env, Nothing, Identifier[Blog]] = for {
+  // IntelliJで警告が出るので戻り値を書いているが書かない方がよさそう
+  def createBlog(title: String, content: String, imageurl: String): ZIO[BlogRepository with ImageRepository, Nothing, Identifier[Blog]] = for {
     imageId <- ImageRepository.allocate()
     _ <- ImageRepository.create(Image(imageId, imageurl))
     blogId <- BlogRepository.allocate()
